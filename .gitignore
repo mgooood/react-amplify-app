@@ -23,7 +23,6 @@ dist-ssr
 *.sln
 *.sw?
 
-# amplify
-.amplify
-amplify_outputs*
-amplifyconfiguration*
+# Amplify
+.amplify/
+amplify_outputs.json
