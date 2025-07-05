@@ -15,21 +15,20 @@ This project is a simple, full-stack to-do list application built with React and
 
 ## How This App Was Built
 
-This section outlines the key steps taken to build this application from scratch.
+This section outlines the key steps taken to build this application from scratch. For a detailed walkthrough, see the TUTORIAL.md file.
 
 ### 1. Initializing the React Frontend
 
 The project was started using Vite, a modern frontend build tool.
 
 ```bash
-npm create vite@latest react-amplify-app -- --template react
-cd react-amplify-app
+npm create vite@latest . -- --template react
 npm install
 ```
 
 ### 2. Setting up AWS Amplify
 
-AWS Amplify Gen 2 was initialized in the project root. This command scaffolds the necessary backend directory structure.
+AWS Amplify Gen 2 was initialized in the project root. This command scaffolds the necessary backend directory structure and installs required dependencies.
 
 ```bash
 npm create amplify@latest
@@ -41,19 +40,13 @@ This created the `amplify/` directory, which contains all the backend-as-code de
 
 User authentication was the first feature added to the backend.
 
-1.  The file `amplify/auth/resource.ts` was created and configured to allow users to sign in with their email addresses.
-2.  The main backend definition at `amplify/backend.ts` was updated to include the new auth resource.
-3.  The local cloud sandbox was started to deploy the auth resources locally:
+1.  The file `amplify/auth/resource.ts` was configured to allow users to sign in with their email addresses.
+2.  The local cloud sandbox was started to deploy the auth resources locally:
     ```bash
     npx ampx sandbox
     ```
-4.  The React frontend was configured in `src/main.jsx` to connect with the Amplify backend:
-    ```javascript
-    import { Amplify } from 'aws-amplify';
-    import outputs from '../amplify_outputs.json';
-    Amplify.configure(outputs);
-    ```
-5.  The `App.jsx` component was wrapped with the `withAuthenticator` Higher-Order Component from `@aws-amplify/ui-react` to protect the app and provide a sign-in/sign-up UI.
+3.  The React frontend was configured in `src/main.jsx` to connect with the Amplify backend.
+4.  The `App.jsx` component was wrapped with the `withAuthenticator` Higher-Order Component from `@aws-amplify/ui-react` to protect the app and provide a sign-in/sign-up UI.
 
 ### 4. Defining the Data Model & API
 
@@ -69,11 +62,7 @@ The `App.jsx` component was updated to provide the full CRUD (Create, Read, Upda
 
 1.  The `generateClient` function from `aws-amplify/api` was used to create a type-safe API client.
 2.  React's `useState` and `useEffect` hooks were used to manage the list of to-dos.
-3.  Async functions were written to handle:
-    - `fetchTodos`: Listing the current user's to-dos.
-    - `createTodo`: Creating a new to-do.
-    - `deleteTodo`: Deleting a to-do.
-    - `updateTodoStatus`: Toggling a to-do's status between "pending" and "completed".
+3.  Async functions were written to handle all CRUD operations.
 4.  The UI was built with a form for creating new items and an unordered list to display them.
 
 ### 6. Preparing for Deployment
@@ -81,7 +70,7 @@ The `App.jsx` component was updated to provide the full CRUD (Create, Read, Upda
 To prepare for cloud deployment, the project was initialized as a Git repository.
 
 1.  The `.gitignore` file was updated to exclude the `.amplify/` directory and the `amplify_outputs.json` file, as these contain environment-specific and sensitive information.
-2.  A new Git repository was initialized and the code was committed.
+2.  A new Git repository was initialized and the code was committed and pushed to GitHub.
 
 ---
 
@@ -91,7 +80,7 @@ To prepare for cloud deployment, the project was initialized as a Git repository
 
     ```bash
     git clone <your-repo-url>
-    cd react-amplify-app
+    cd <repo-name>
     ```
 
 2.  **Install dependencies:**
